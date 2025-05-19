@@ -39,4 +39,16 @@ public class AuthService {
         return new LoginResponse(accessToken, refreshToken);
 
     }
+
+    public void logout(String authHeader) {
+        String accessToken = jwtTokenProvider.resolveToken(authHeader);
+
+        if (!jwtTokenProvider.validateToken(accessToken)) {
+            throw new RuntimeException("유효하지 않은 토큰입니다.");
+        }
+
+        String email = jwtTokenProvider.getEmailFromToken(accessToken);
+        refreshTokenRepository.deleteById(email);
+    }
+
 }
