@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JwtTechApplication" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="ms-17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="DB_PASSWORD" value="Lhv7sxo171!" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.example.jwt.JwtTechApplication" />
+    <module name="jwt-tech.main" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
