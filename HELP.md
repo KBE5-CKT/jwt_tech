@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.example.jwt-tech' is invalid and this project uses 'com.example.jwt_tech' instead.
+* The original package name 'com.example.jwt-tech' is invalid and this project uses 'com.example.jwt' instead.
 
 # Getting Started
 

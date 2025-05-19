@@ -1,4 +1,4 @@
-package com.example.jwt_tech.jwt;
+package com.example.jwt.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -31,7 +31,7 @@ public class JwtTokenProvider {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
-    // ✅ Access Token 생성
+    // Access Token 생성
     public String createAccessToken(String email, String role) {
         return Jwts.builder()
                 .setSubject(email)
@@ -42,7 +42,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // ✅ Refresh Token 생성
+    // Refresh Token 생성
     public String createRefreshToken() {
         return Jwts.builder()
                 .setIssuedAt(new Date())
@@ -51,7 +51,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // ✅ 토큰에서 이메일 추출
+    // 토큰에서 이메일 추출
     public String getEmailFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -61,7 +61,7 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    // ✅ 토큰 유효성 검사
+    // 토큰 유효성 검사
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -71,7 +71,7 @@ public class JwtTokenProvider {
         }
     }
 
-    // ✅ 요청 헤더에서 토큰 추출
+    // 요청 헤더에서 토큰 추출
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
