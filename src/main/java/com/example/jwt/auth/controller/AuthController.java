@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
@@ -35,6 +37,13 @@ public class AuthController {
         String email = jwtTokenProvider.getEmailFromToken(token);
         refreshTokenRepository.deleteById(email);  // DB에서 리프레시 토큰 삭제
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<LoginResponse> refresh(@RequestBody Map<String, String> request) {
+        String refreshToken = request.get("refreshToken");
+        LoginResponse response = authService.refresh(refreshToken);
+        return ResponseEntity.ok(response);
     }
 
 }
