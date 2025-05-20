@@ -18,7 +18,7 @@ public class UserService {
         userRepository.save(User.builder()
                 .email(email)
                 .password(encoded)
-                .role("ROLE_USER")
+                .role(User.UserRole.ROLE_USER)
                 .build());
     }
 }
