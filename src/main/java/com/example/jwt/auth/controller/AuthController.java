@@ -23,8 +23,13 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+    public ResponseEntity<Void> login(@RequestBody LoginRequest request) {
+        LoginResponse tokens = authService.login(request);
+
+        return ResponseEntity.ok()
+                .header("Authorization", "Bearer " + tokens.getAccessToken())
+                .header("Refresh-Token", tokens.getRefreshToken())
+                .build();
     }
 
     @PostMapping("/logout")
