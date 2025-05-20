@@ -11,9 +11,9 @@ spring:
       hibernate.format_sql: true
 
 jwt:
-  secret: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9abcdefghijklmnopqrstuvwxyz123456"
+  secret: ${JWT_SECRET}
   access-token-expiration: 600000       # 10?
-  refresh-token-expiration: 1209600000  # 14?
+  refresh-token-expiration: 1209600000  # 14일
 
 logging:
   file:
