@@ -16,6 +16,7 @@ public class RefreshToken {
     @Id
     private String email;
 
+    @Column(unique = true)
     private String token;
 
     public void setToken(String token) {

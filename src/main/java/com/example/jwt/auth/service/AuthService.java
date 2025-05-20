@@ -52,10 +52,8 @@ public class AuthService {
     }
 
     public LoginResponse refresh(String refreshToken) {
-        // DB에서 refresh 토큰 찾기
-        RefreshToken token = refreshTokenRepository.findAll().stream()
-                .filter(t -> t.getToken().equals(refreshToken))
-                .findFirst()
+        // DB에서 refresh 토큰 직접 조회
+        RefreshToken token = refreshTokenRepository.findByToken(refreshToken)
                 .orElseThrow(() -> new RuntimeException("유효하지 않은 리프레시 토큰"));
 
         String email = token.getEmail();
@@ -63,7 +61,8 @@ public class AuthService {
         // 새로운 access token 발급
         String newAccessToken = jwtTokenProvider.createAccessToken(email, "ROLE_USER");
 
-        return new LoginResponse(newAccessToken, refreshToken); // refresh token 은 그대로 반환
+        // refresh token 은 그대로 반환
+        return new LoginResponse(newAccessToken, refreshToken);
     }
 
 }
